@@ -1,0 +1,25 @@
+version: '3.3'
+
+networks:
+  cjl_default:
+    external: true
+
+services:
+  front:
+   image: madupont/cjl-scheduler-front:1.3
+   ports:
+     - "3000:3000"
+   networks:
+     - cjl_default
+   stdin_open: true
+
+  api:
+   image: madupont/cjl-scheduler:1.0.63
+   ports:
+     - "8888:8888"
+   networks:
+     - cjl_default
+   environment:
+     JAVA_IO_TMPDIR: "/tmp"
+     QUARKUS_OIDC_AUTH_SERVER_URL: "http://keycloak:8080/auth/realms/cjl"
+     QUARKUS_DATASOURCE_JDBC_URL: "jdbc:mariadb://mariadb/cjl?sessionVariables=wait_timeout=31536000&autoReconnect=true"

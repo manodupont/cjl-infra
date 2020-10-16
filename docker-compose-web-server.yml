@@ -1,0 +1,37 @@
+version: '3.3'
+
+networks:
+  cjl_default:
+    external: true
+
+services:
+  nginx:
+        #image: nginx:latest
+        #networks:
+        #- cjl_default
+        #volumes:
+        #- ./nginx/nginx.conf:/etc/nginx/conf.d
+        #- ./nginx/certbot/conf:/etc/letsencrypt
+        #- ./nginx/certbot/www:/var/www/certbot
+        #ports:
+        #- "80:80"
+        #- "443:443"
+        #restart: unless-stopped
+        #  certbot:
+        #   image: certbot/certbot
+        #volumes:
+        #- ./nginx/certbot/conf:/etc/letsencrypt
+        #- ./nginx/certbot/www:/var/www/certbot
+    image: staticfloat/nginx-certbot
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - cjl_default
+    environment:
+      CERTBOT_EMAIL: mdupont54@gmail.com
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/user.conf.d:ro
+      - letsencrypt:/etc/letsencrypt
+volumes:
+  letsencrypt:
