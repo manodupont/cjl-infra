@@ -6,7 +6,7 @@ networks:
 
 services:
   front:
-   image: madupont/cjl-scheduler-front:1.3
+   image: madupont/cjl-scheduler-front:1.10
    ports:
      - "3000:3000"
    networks:

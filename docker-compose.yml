@@ -16,7 +16,7 @@ services:
       MYSQL_DATABASE: "keycloak"
 
   keycloak:
-    image: cjl-keycloak:latest
+    image: madupont/cjl_keycloak:latest
     restart: always
     ports:
       - "8080:8080"
@@ -25,7 +25,7 @@ services:
             #DB_HOST: localhost
             #DB_PORT: 3306
             #DB_DATABASE: cjl
-            #PROXY_ADDRESS_FORWARDING: "true"
+      PROXY_ADDRESS_FORWARDING: "true"
       DB_PASSWORD: "Password1"
       KEYCLOAK_USER: "admin"
       KEYCLOAK_PASSWORD: "admin123"
